@@ -27,14 +27,14 @@ void sendall(int sock, const char* buffer, size_t len) {
 
 int main() {
     puts("server starting");
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    int sock = socket(AF_VSOCK, SOCK_STREAM, 0);
     if (sock == -1) {
         perror("socket() failed: ");
         exit(1);
     }
 
     sockaddr_vm addr {
-        .svm_family = AF_INET,
+        .svm_family = AF_VSOCK,
         .svm_reserved1 = 0,
         .svm_port = 8080,
         .svm_cid = -1u,

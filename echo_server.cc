@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void fatal(const char* msg) {
     perror(msg);
@@ -63,6 +64,7 @@ int main() {
         printf("recv: '%s'\n", buffer);
 
         sendall(client, buffer, bytes);
+        close(client);
     }
 
 
